@@ -1,0 +1,117 @@
+---
+description: Apply these rules when creating the project
+globs:
+alwaysApply: true
+---
+## Project Overview
+
+*   **Type:** Web Application (Data Extraction & AI-Enhanced Contact Scraping)
+*   **Description:** A web tool that extracts contact information (emails, phone numbers, social media links) from Google Maps listings. It is designed for sales professionals to generate leads ethically and efficiently while ensuring compliance with Google Maps' terms and data privacy regulations.
+*   **Primary Goal:** Develop a robust, user-friendly application that extracts and displays contact data from Google Maps, integrates AI-driven insights for lead prioritization, and maintains strict compliance with legal and ethical standards.
+
+## Project Structure
+
+### Framework-Specific Routing
+
+*   **Directory Rules:**
+
+    *   **Next.js 14 (App Router):** Enforce `app/[route]/page.tsx` conventions for all route definitions.
+    *   Example 1: "Next.js 14 (App Router)" → `app/[route]/page.tsx` conventions
+    *   Example 2: "Next.js (Pages Router)" → *Not applicable as App Router exclusive is enforced*
+    *   Example 3: "React Router 6" → *N/A in this project*
+
+### Core Directories
+
+*   **Versioned Structure:**
+
+    *   **app/api:** Next.js 14 API routes with Route Handlers for backend processing (e.g., scraping tasks, authentication endpoints).
+    *   **app/auth:** Contains authentication and role-based access control pages (e.g., `app/auth/login/page.tsx`).
+    *   **app/dashboard:** Root layout for authenticated user interactions and dashboards.
+    *   **src/components:** Houses shared UI components built with shadcn/radixui.
+    *   **src/styles:** Tailwind CSS configuration and global styling.
+
+### Key Files
+
+*   **Stack-Versioned Patterns:**
+
+    *   **app/dashboard/layout.tsx:** Implements Next.js 14 root layout for the dashboard and core UX elements.
+    *   **app/home/page.tsx:** Home screen with location and keyword input fields.
+    *   **app/results/page.tsx:** Displays scraped and AI-enhanced results in a sortable/filterable table.
+    *   **app/api/scrape/route.ts:** Handles web scraping requests using Node.js with Puppeteer/Playwright.
+
+## Tech Stack Rules
+
+*   **Version Enforcement:**
+
+    *   **next@14:** App Router is required. No legacy `pages/` directory usage; enforce nested route folders within `app/`.
+    *   **typescript@latest:** Full static typing to ensure code safety and scalability.
+    *   **tailwindcss@latest:** Utility-first CSS with proper purge configuration for production builds.
+    *   **shadcn/radixui:** Must follow accessibility and interaction best practices.
+    *   **supabase@latest:** Implement secure authentication and role-based access control.
+    *   **node (Puppeteer/Playwright):** Respect rate limits, comply with robots.txt; log scraping activities and ensure manual intervention as needed.
+    *   **gpt-4:** Integrate for AI insights; maintain safe handling and validation of API outputs.
+
+## PRD Compliance
+
+*   **Non-Negotiable:**
+
+    *   "Scraping must strictly adhere to Google Maps' Terms of Service, including respect for rate limits, robots.txt, and avoiding bot-like behavior. Manual intervention is required where necessary."
+
+## App Flow Integration
+
+*   **Stack-Aligned Flow:**
+
+    *   Example: "Next.js 14 Auth Flow → `app/auth/login/page.tsx` uses Supabase for secure, role-based authentication."
+    *   Example: "Scraping and Results Flow → `app/home/page.tsx` gathers input, `app/api/scrape/route.ts` processes scraping, and `app/results/page.tsx` displays data with AI-generated insights."
+
+## Best Practices
+
+*   **Next.js (App Router):**
+
+    *   Enforce use of the `app/` directory and nested route folders.
+    *   Utilize SSR or static generation where performance benefits are evident.
+    *   Keep API routes clearly separated and maintain concise route logic.
+
+*   **TypeScript:**
+
+    *   Strongly type all components and APIs.
+    *   Implement comprehensive error handling and use interfaces for data models.
+    *   Maintain consistency in coding conventions.
+
+*   **Tailwind CSS:**
+
+    *   Use Tailwind's utility classes for consistent styling.
+    *   Configure PurgeCSS to remove unused styles in production.
+    *   Maintain separation of concerns by minimizing custom CSS overrides.
+
+*   **shadcn/radixui:**
+
+    *   Follow accessibility standards in component design.
+    *   Use theming and design tokens to maintain consistency across UI components.
+    *   Implement smooth interactions and transitions as defined by the design guidelines.
+
+*   **Supabase:**
+
+    *   Enforce secure authentication and role-based access control.
+    *   Use built-in logging and audit trail features for compliance and debugging.
+    *   Regularly review security configurations and access rules.
+
+*   **Node.js (Puppeteer/Playwright):**
+
+    *   Respect rate limits and adhere to Google Maps scraping guidelines.
+    *   Log all scraping activities with clear error messaging for compliance purposes.
+    *   Integrate manual checks where necessary to validate data extraction processes.
+
+*   **GPT-4 Integration:**
+
+    *   Validate and sanitize AI outputs before integrating into UI components.
+    *   Secure API keys and maintain quotas for reliable operation.
+    *   Use AI to enhance data insights without compromising compliance standards.
+
+## Rules
+
+*   Derive folder/file patterns **directly** from techStackDoc versions.
+*   If Next.js 14 App Router: Enforce `app/` directory with nested route folders exclusively.
+*   If Pages Router: Not applicable as App Router is used.
+*   Never mix version patterns (e.g., do not use `pages/` structure in an App Router project).
+*   All scraping operations must strictly adhere to legal and ethical standards as outlined in the PRD.
